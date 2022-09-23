@@ -33,4 +33,39 @@ ggsave("penguins_scatterplot.pdf", height = 4, width = 6)
 
 # Problem 2
 
+I'm creating a dataframe with a random sample of size 10 from a standard Normal distribution, a logical vector indicating whether elements of the sample are greater than 0, a character vector of length 10, and a factor vector of length 10, with 3 different factor “levels”.
+```{r}
+df = tibble(
+  random_samp = rnorm(10, mean = 0, sd = 1),
+  vec_logical = (random_samp > 0),
+  vec_char = c("a", "b", "c", "d", "e", "f", "h", "i", "j", "k"),
+  vec_factor = factor(c("single", "married", "married", "single", "divorced", "divorced", "single", "married", "married", "divorced"), levels = c("single", "married", "divorced"))
+)
+str(df)
+```
 
+R allows us to take the mean of the random sample and of the logical vector, counting TRUE as 1 and FALSE as FALSE. 
+```{r}
+mean(pull(df, random_samp))
+mean(pull(df, vec_logical))
+```
+
+R does not allow us to take the mean of the character vector or of the factor vector. 
+```{r}
+mean(pull(df, vec_char))
+mean(pull(df, vec_factor))
+```
+
+
+This is code that applies the as.numeric function to the logical, character, and factor variables 
+```{r, results = FALSE}
+as.numeric(pull(df, vec_logical))
+as.numeric(pull(df, vec_char))
+as.numeric(pull(df, vec_factor))
+```
+
+* When we make the logical vector numeric, we get 1s for TRUE and 0s for FALSE. This means we can interpret a mean of 0.5 to indicate TRUE occurs just as much as FALSE in the random sample.
+
+* When we make the character vector numeric, we get a string of NAs, which explain why we could not generate a mean.
+
+* When we make the factor vector numeric, we have our factors labelled as 1, 2, and 3 in the order that they were imposed in the creation of the dataframe. However, it makes sense that R does not automatically count the factors as numbers in generating a mean, since number assignment is arbitrary.
