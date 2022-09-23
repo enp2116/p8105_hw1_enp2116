@@ -13,21 +13,22 @@ library(palmerpenguins)
 
 # Problem 1
 
-```{r, echo=FALSE}
+First, I'm loading the `penguins` dataset from the PalmerPenguins package.
+```{r}
 data("penguins", package = "palmerpenguins")
 ```
 
 * The `penguins` dataset includes the variables: `r names(penguins)`. The variable of species has values: `r levels(penguins$species)`. The variable of flipper_length_mm has values such as `r head(penguins$flipper_length_mm)` mm and bill_length_mm has values such as `r head(penguins$bill_length_mm)` mm.
 
-* The `penguins` dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+* The `penguins` dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns, indicating we have data on `r nrow(penguins)` different penguins and are measuring at most `r ncol(penguins)` different traits in each penguin.
 
 * Across all penguin species, the mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm.
 
+Using ggplot, I'm creating a labeled scatterplot of flipper_length_mm (y) vs bill_length_mm (x), color-coded by species.
 ```{r, echo = FALSE, warning = FALSE}
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species, )) + geom_point() + xlab("Bill Length (mm)") + ylab("Flipper Length (mm)") + ggtitle("Scatterplot of Bill Length vs. Flipper Length by Species")
 ggsave("penguins_scatterplot.pdf", height = 4, width = 6)
 ```
-
 
 
 # Problem 2
