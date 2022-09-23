@@ -58,7 +58,7 @@ mean(pull(df, vec_factor))
 
 
 This is code that applies the as.numeric function to the logical, character, and factor variables 
-```{r, results = FALSE}
+```{r, results = FALSE, warning = FALSE}
 as.numeric(pull(df, vec_logical))
 as.numeric(pull(df, vec_char))
 as.numeric(pull(df, vec_factor))
