@@ -1,0 +1,10 @@
+---
+title: "P8105 HW 1"
+author: "Emily Potts (enp2116)"
+date: "2022-09-24"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
